@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substack Analyzer – Grow Through Smarter Commenting</title>
+    <meta name="description" content="Score Substack posts, extract key insights, and get AI-generated comment drafts in your voice. Grow your audience through strategic engagement.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --orange: #FF6719;
+            --orange-dark: #E55A15;
+            --orange-light: #FFF4EE;
+            --cream: #FFFBF7;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-500: #6B7280;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            
+            --font-serif: 'Lora', Georgia, serif;
+            --font-sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            --max-width: 1140px;
+            --section-padding: 100px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--gray-700);
+            background: #fff;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-100);
+            z-index: 100;
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+        
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--gray-900);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--orange);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-family: var(--font-sans);
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--orange);
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background: var(--orange-dark);
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: var(--gray-900);
+            color: #fff;
+        }
+        
+        .btn-secondary:hover {
+            background: #000;
+            transform: translateY(-1px);
+        }
+        
+        .btn-small {
+            padding: 10px 18px;
+            font-size: 15px;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 140px 0 var(--section-padding);
+            background: linear-gradient(180deg, var(--cream) 0%, #fff 100%);
+        }
+        
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 52px;
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--gray-900);
+            margin-bottom: 24px;
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            color: var(--gray-500);
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+        
+        .hero-cta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .social-proof {
+            font-size: 15px;
+            color: var(--gray-500);
+        }
+        
+        .social-proof strong {
+            color: var(--gray-700);
+        }
+        
+        /* Product Mockup */
+        .hero-visual {
+            position: relative;
+        }
+        
+        .browser-frame {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .browser-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gray-200);
+        }
+        
+        .browser-dot:nth-child(1) { background: #FF5F57; }
+        .browser-dot:nth-child(2) { background: #FFBD2E; }
+        .browser-dot:nth-child(3) { background: #28CA41; }
+        
+        .browser-content {
+            padding: 24px;
+        }
+        
+        .mockup-header {
+            margin-bottom: 20px;
+        }
+        
+        .mockup-title {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        
+        .mockup-meta {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+        
+        .mockup-score {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px;
+            background: var(--orange-light);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .score-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        
+        .score-emoji {
+            font-size: 28px;
+            margin-bottom: 4px;
+        }
+        
+        .score-badge {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        
+        .score-text {
+            font-size: 14px;
+            color: var(--gray-700);
+            line-height: 1.5;
+        }
+        
+        .mockup-section-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--gray-500);
+            margin-bottom: 8px;
+        }
+        
+        .mockup-synopsis {
+            font-size: 14px;
+            color: var(--gray-700);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 12px;
+            background: var(--gray-50);
+            border-radius: 6px;
+        }
+        
+        .mockup-quote {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--gray-600);
+            line-height: 1.5;
+            padding: 10px 14px;
+            border-left: 3px solid #007aff;
+            background: var(--gray-50);
+            margin-bottom: 20px;
+        }
+        
+        .mockup-comment {
+            padding: 12px;
+            background: #fff;
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+        }
+        
+        .comment-angle {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 6px;
+        }
+        
+        .comment-draft {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--gray-700);
+            margin-bottom: 10px;
+        }
+        
+        .mockup-btn {
+            display: inline-block;
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            background: #28a745;
+            color: #fff;
+            border-radius: 4px;
+        }
+        
+        /* Problem Section */
+        .problem {
+            padding: var(--section-padding) 0;
+            background: var(--orange-light);
+        }
+        
+        .problem .container {
+            max-width: 720px;
+            text-align: center;
+        }
+        
+        .problem h2 {
+            font-family: var(--font-serif);
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+        
+        .problem p {
+            font-size: 19px;
+            color: var(--gray-700);
+            line-height: 1.7;
+        }
+        
+        .problem p + p {
+            margin-top: 16px;
+        }
+        
+        .inbox-image-container {
+            margin: 32px auto;
+            max-width: 320px;
+        }
+        
+        .inbox-image {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .inbox-caption {
+            font-size: 15px;
+            font-style: italic;
+            color: var(--gray-600);
+            text-align: center;
+            margin-top: 12px;
+        }
+        
+        /* Features */
+        .features {
+            padding: var(--section-padding) 0;
+        }
+        
+        .features h2 {
+            font-family: var(--font-serif);
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--gray-900);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+        
+        .feature-card {
+            padding: 28px;
+            background: var(--gray-50);
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+        
+        .feature-card:hover {
+            background: var(--cream);
+            transform: translateY(-4px);
+        }
+        
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+        
+        .feature-card h3 {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            font-size: 16px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: var(--section-padding) 0;
+            background: var(--gray-50);
+        }
+        
+        .how-it-works h2 {
+            font-family: var(--font-serif);
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--gray-900);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            background: var(--orange);
+            color: #fff;
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        
+        .step h3 {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+        
+        .step p {
+            font-size: 16px;
+            color: var(--gray-500);
+        }
+        
+        .step-arrow {
+            position: absolute;
+            top: 28px;
+            right: -12px;
+            color: var(--gray-300);
+            font-size: 24px;
+        }
+        
+        .step:last-child .step-arrow {
+            display: none;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: var(--section-padding) 0;
+        }
+        
+        .pricing h2 {
+            font-family: var(--font-serif);
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--gray-900);
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .pricing-card {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #fff;
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            text-align: center;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        
+        .price-row:last-of-type {
+            border-bottom: none;
+            margin-bottom: 20px;
+        }
+        
+        .price-label {
+            font-size: 17px;
+            color: var(--gray-700);
+        }
+        
+        .price-value {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        
+        .pricing-note {
+            font-size: 15px;
+            color: var(--gray-500);
+            margin-bottom: 24px;
+        }
+        
+        .promo-badge {
+            display: inline-block;
+            padding: 12px 20px;
+            background: var(--orange-light);
+            border: 2px dashed var(--orange);
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+        
+        .promo-badge span {
+            font-size: 15px;
+            color: var(--gray-700);
+        }
+        
+        .promo-badge code {
+            font-family: monospace;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--orange);
+            background: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 4px;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            padding: var(--section-padding) 0;
+            background: linear-gradient(135deg, var(--orange) 0%, #FF8C42 100%);
+        }
+        
+        .final-cta .container {
+            max-width: 720px;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-family: var(--font-serif);
+            font-size: 44px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        
+        .final-cta p {
+            font-size: 19px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+        
+        .final-cta .btn-secondary {
+            padding: 16px 32px;
+            font-size: 18px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            background: var(--gray-900);
+            color: var(--gray-500);
+        }
+        
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        footer a {
+            color: var(--gray-500);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        footer a:hover {
+            color: #fff;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            
+            .hero-content h1 {
+                font-size: 42px;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+            
+            .step-arrow {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            :root {
+                --section-padding: 64px;
+            }
+            
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .features-grid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .problem h2,
+            .features h2,
+            .how-it-works h2,
+            .pricing h2 {
+                font-size: 28px;
+            }
+            
+            .final-cta h2 {
+                font-size: 32px;
+            }
+            
+            footer .container {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="/" class="logo">Substack<span>Analyzer</span></a>
+            <a href="https://chromewebstore.google.com/detail/substack-analyzer/cdjdpcifhliaecngilfackmgfncknnkk" class="btn btn-primary btn-small">Add to Chrome</a>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Grow Your Substack Through Smarter Commenting</h1>
+                <p>Thoughtful comments drive subscribers. Substack Analyzer scores posts, extracts key insights, and drafts comments in your voice—so you can engage meaningfully in minutes, not hours.</p>
+                <div class="hero-cta">
+                    <a href="https://chromewebstore.google.com/detail/substack-analyzer/cdjdpcifhliaecngilfackmgfncknnkk" class="btn btn-primary">Add to Chrome — It's Free to Start</a>
+                </div>
+                <p class="social-proof">Join <strong>100+ Substack writers</strong> growing through genuine engagement</p>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="browser-frame">
+                    <div class="browser-bar">
+                        <div class="browser-dot"></div>
+                        <div class="browser-dot"></div>
+                        <div class="browser-dot"></div>
+                    </div>
+                    <div class="browser-content">
+                        <div class="mockup-header">
+                            <div class="mockup-title">The Death of the Global Citizen</div>
+                        </div>
+                        
+                        <div class="mockup-score">
+                            <div class="score-left">
+                                <span class="score-emoji">👍</span>
+                                <span class="score-badge">4/5</span>
+                            </div>
+                            <span class="score-text">Strong contrarian thesis backed by specific examples from existing UBI programs. Dense with actionable insights about the intersection of AI, UBI, and global mobility that most readers haven't considered.</span>
+                        </div>
+                        
+                        <div class="mockup-section-label">Synopsis</div>
+                        <div class="mockup-synopsis">
+                            The author argues that AI-driven UBI will paradoxically destroy middle-class global mobility by creating location-dependent income streams through CBDCs and GPS tracking. The solution is building private wealth through multiple income streams, IP, and assets before this window closes.
+                        </div>
+                        
+                        <div class="mockup-section-label">Notable Quotes</div>
+                        <div class="mockup-quote">
+                            "Technology makes work location-independent, while UBI makes humans location-dependent."
+                        </div>
+                        
+                        <div class="mockup-section-label">Comment Draft</div>
+                        <div class="mockup-comment">
+                            <div class="comment-angle">Connect</div>
+                            <div class="comment-draft">"Your point about bureaucratic friction rings true. I've watched friends get trapped between Portugal's D7 visa requirements and their home country's tax residency rules—adding UBI compliance to that maze would be nightmarish."</div>
+                            <span class="mockup-btn">Copy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Problem -->
+    <section class="problem">
+        <div class="container">
+            <h2>Commenting is the #1 growth strategy on Substack. But it's exhausting.</h2>
+            
+            <div class="inbox-image-container">
+                <img src="inbox.png" alt="Gmail inbox showing 2,434 unread Substack emails" class="inbox-image">
+                <p class="inbox-caption">Sound familiar? Reading and commenting on all of this would be a full-time job.</p>
+            </div>
+            
+            <p>Every growth guide says the same thing: comment thoughtfully on other writers' posts. It builds visibility, establishes expertise, and drives engaged subscribers—not just vanity followers.</p>
+            <p>But reading every post deeply? Crafting comments that add value? Finding the right angle? That takes hours you don't have.</p>
+        </div>
+    </section>
+    
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2>Read less. Comment more.</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Score in Seconds</h3>
+                    <p>Instantly know if a post is worth your time. Get a 1-5 score based on actionable insights, originality, and relevance to your interests.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Synopsis + Key Quotes</h3>
+                    <p>Skip the skim. Get the core argument in 3 sentences and the most quotable lines—perfect for crafting a response.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎤</div>
+                    <h3>Drafts in Your Voice</h3>
+                    <p>Three ready-to-use comments (Challenge, Connect, Extend) written in YOUR style. Set up your voice profile once, sound like yourself every time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Optional Fact-Check</h3>
+                    <p>For posts making big claims, verify with AI-powered research before you engage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>From URL to comment in 60 seconds</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Paste</h3>
+                    <p>Drop any Substack post URL</p>
+                    <span class="step-arrow">→</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Score</h3>
+                    <p>Get insights, synopsis, and quotes</p>
+                    <span class="step-arrow">→</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Copy</h3>
+                    <p>Pick a comment draft or customize</p>
+                    <span class="step-arrow">→</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Post</h3>
+                    <p>Engage, connect, grow</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section class="pricing">
+        <div class="container">
+            <h2>Pay for what you use</h2>
+            <div class="pricing-card">
+                <div class="price-row">
+                    <span class="price-label">Analysis</span>
+                    <span class="price-value">$0.10</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">With research verification</span>
+                    <span class="price-value">$0.25</span>
+                </div>
+                <p class="pricing-note">No subscription. No monthly fees. Add credits when you need them.</p>
+                
+                <div class="promo-badge">
+                    <span>🎉 Launch special: Use code</span>
+                    <code>LAUNCH</code>
+                    <span>for $1 free</span>
+                </div>
+                
+                <a href="https://chromewebstore.google.com/detail/substack-analyzer/cdjdpcifhliaecngilfackmgfncknnkk" class="btn btn-primary">Get Started Free</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Stop skimming. Connect and grow.</h2>
+            <p>The writers growing fastest on Substack aren't just publishing—they're showing up in comment sections, building real relationships. Substack Analyzer helps you do that at scale, without spending hours on the platform every day.</p>
+            <a href="https://chromewebstore.google.com/detail/substack-analyzer/cdjdpcifhliaecngilfackmgfncknnkk" class="btn btn-secondary">Add to Chrome</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <span>© 2025 Substack Analyzer</span>
+            <div class="footer-links">
+                <a href="/privacy">Privacy</a>
+                <a href="mailto:hello@substackanalyzer.app">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
