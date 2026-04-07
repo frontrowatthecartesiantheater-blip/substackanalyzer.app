@@ -334,7 +334,7 @@
             border-radius: 4px;
         }
         
-        /* Problem Section */
+        /* Why I Built This Section */
         .problem {
             padding: var(--section-padding) 0;
             background: var(--orange-light);
@@ -581,6 +581,84 @@
             margin-left: 4px;
         }
         
+        /* FAQ */
+        .faq {
+            padding: var(--section-padding) 0;
+            background: var(--gray-50);
+        }
+        
+        .faq h2 {
+            font-family: var(--font-serif);
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--gray-900);
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .faq-list {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .faq-item:first-child {
+            border-top: 1px solid var(--gray-200);
+        }
+        
+        .faq-question {
+            width: 100%;
+            padding: 20px 0;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: var(--font-sans);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-900);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+        
+        .faq-question:hover {
+            color: var(--orange);
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--gray-500);
+            transition: transform 0.2s ease;
+        }
+        
+        .faq-item.active .faq-question::after {
+            content: '−';
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 20px;
+        }
+        
+        .faq-answer p {
+            font-size: 16px;
+            color: var(--gray-700);
+            line-height: 1.7;
+        }
+        
         /* Final CTA */
         .final-cta {
             padding: var(--section-padding) 0;
@@ -691,7 +769,8 @@
             .problem h2,
             .features h2,
             .how-it-works h2,
-            .pricing h2 {
+            .pricing h2,
+            .faq h2 {
                 font-size: 28px;
             }
             
@@ -703,6 +782,10 @@
                 flex-direction: column;
                 gap: 16px;
                 text-align: center;
+            }
+            
+            .faq-question {
+                font-size: 16px;
             }
         }
     </style>
@@ -770,7 +853,7 @@
         </div>
     </section>
     
-    <!-- Problem -->
+    <!-- Why I Built This -->
     <section class="problem">
         <div class="container">
             <h2>Commenting is the #1 growth strategy on Substack. But it's exhausting.</h2>
@@ -780,8 +863,9 @@
                 <p class="inbox-caption">Sound familiar? Reading and commenting on all of this would be a full-time job.</p>
             </div>
             
-            <p>Every growth guide says the same thing: comment thoughtfully on other writers' posts. It builds visibility, establishes expertise, and drives engaged subscribers—not just vanity followers.</p>
-            <p>But reading every post deeply? Crafting comments that add value? Finding the right angle? That takes hours you don't have.</p>
+            <p>I've been on Substack for nearly two years across multiple publications. I know the playbook: show up in comment sections, add something worth reading, build real relationships with other writers. The algorithm notices. Readers notice.</p>
+            <p>But my inbox has 50+ posts I actually want to engage with. Reading each one deeply, finding an angle, writing something that doesn't sound phoned in — that's hours every week I don't have.</p>
+            <p>So I built this. Not to fake engagement, but to get to the good part faster: the actual conversation.</p>
         </div>
     </section>
     
@@ -872,6 +956,57 @@
         </div>
     </section>
     
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">How does scoring work?</button>
+                    <div class="faq-answer">
+                        <p>Posts get a 1-5 score based on actionable insights, originality, and information density. You can customize the rubric in settings — tell it what topics you care about, what signals to prioritize, and what to deprioritize.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Will comments sound like AI wrote them?</button>
+                    <div class="faq-answer">
+                        <p>They're starting points, not final drafts. You set up a voice profile describing how you actually write — your tone, your go-to moves, what you avoid. The drafts match that. Edit as much or as little as you want before posting.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">What's the difference between $0.10 and $0.25?</button>
+                    <div class="faq-answer">
+                        <p>Basic analysis ($0.10) gives you score, synopsis, quotes, and comment drafts. Research verification ($0.25) adds AI-powered fact-checking for posts making claims about current events or data.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Why pay-per-use instead of subscription?</button>
+                    <div class="faq-answer">
+                        <p>Because I hate subscriptions. You shouldn't pay monthly for something you might use twice. Add credits when you need them, use them when you want.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Does this work on paywalled posts?</button>
+                    <div class="faq-answer">
+                        <p>Not yet — the tool can only analyze publicly accessible content. Analyzing posts you're subscribed to is on the roadmap.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Is my data stored?</button>
+                    <div class="faq-answer">
+                        <p>Your voice profile and scoring rubric are stored so you don't have to re-enter them. Analysis history stays in your browser locally. I'm not harvesting your data for anything.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Can I customize what I care about?</button>
+                    <div class="faq-answer">
+                        <p>Yes. In settings, you can specify topics you care about (score higher), bonus signals to reward, and things to deprioritize. The scoring adapts to what matters to you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Final CTA -->
     <section class="final-cta">
         <div class="container">
@@ -891,5 +1026,14 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
