@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Substack Analyzer – Grow Through Smarter Commenting</title>
-    <meta name="description" content="Score Substack posts, extract key insights, and get AI-generated comment drafts in your voice. Grow your audience through strategic engagement.">
+    <title>Substack Analyzer – Cut Through Newsletter Fatigue</title>
+    <meta name="description" content="Score Substack posts in seconds. Get a 1-5 rating, synopsis, and key quotes so you can focus on the best reads and skip the rest.">
     
     <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://substackanalyzer.app">
-    <meta property="og:title" content="Substack Analyzer – Grow Through Smarter Commenting">
-    <meta property="og:description" content="Score posts, extract insights, and get AI-generated comment drafts in your voice.">
+    <meta property="og:title" content="Substack Analyzer – Cut Through Newsletter Fatigue">
+    <meta property="og:description" content="Score Substack posts in seconds. Focus on the best reads and skip the rest.">
     <meta property="og:image" content="https://substackanalyzer.app/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://substackanalyzer.app/og-image.png">
@@ -296,45 +296,25 @@
             color: var(--gray-600);
             line-height: 1.5;
             padding: 10px 14px;
-            border-left: 3px solid #007aff;
+            border-left: 3px solid var(--orange);
             background: var(--gray-50);
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
         
-        .mockup-comment {
-            padding: 12px;
-            background: #fff;
-            border: 1px solid var(--gray-200);
+        .mockup-verdict {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 12px 16px;
+            background: #e8f5e9;
             border-radius: 8px;
-        }
-        
-        .comment-angle {
-            font-size: 12px;
+            font-size: 15px;
             font-weight: 600;
-            color: var(--orange);
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            margin-bottom: 6px;
+            color: #2e7d32;
         }
         
-        .comment-draft {
-            font-size: 14px;
-            font-style: italic;
-            color: var(--gray-700);
-            margin-bottom: 10px;
-        }
-        
-        .mockup-btn {
-            display: inline-block;
-            padding: 6px 14px;
-            font-size: 13px;
-            font-weight: 600;
-            background: #28a745;
-            color: #fff;
-            border-radius: 4px;
-        }
-        
-        /* Why I Built This Section */
+        /* Problem Section */
         .problem {
             padding: var(--section-padding) 0;
             background: var(--orange-light);
@@ -803,12 +783,12 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Grow Your Substack Through Smarter Commenting</h1>
-                <p>Thoughtful comments drive subscribers. Substack Analyzer scores posts, extracts key insights, and drafts comments in your voice—so you can engage meaningfully in minutes, not hours.</p>
+                <h1>Cut Through Newsletter Fatigue</h1>
+                <p>You subscribe to amazing writers. But with 50, 100, 200+ newsletters piling up, how do you know what's actually worth reading? Substack Analyzer scores posts in seconds so you can focus on the best and skip the rest.</p>
                 <div class="hero-cta">
                     <a href="https://chromewebstore.google.com/detail/substack-analyzer/cdjdpcifhliaecngilfackmgfncknnkk" class="btn btn-primary">Add to Chrome — It's Free to Start</a>
                 </div>
-                <p class="social-proof">Download the extension and grow through smarter engagement</p>
+                <p class="social-proof">Join readers who've <strong>reclaimed their reading time</strong></p>
             </div>
             
             <div class="hero-visual">
@@ -841,11 +821,8 @@
                             "Technology makes work location-independent, while UBI makes humans location-dependent."
                         </div>
                         
-                        <div class="mockup-section-label">Comment Draft</div>
-                        <div class="mockup-comment">
-                            <div class="comment-angle">Connect</div>
-                            <div class="comment-draft">"Your point about bureaucratic friction rings true. I've watched friends get trapped between Portugal's D7 visa requirements and their home country's tax residency rules—adding UBI compliance to that maze would be nightmarish."</div>
-                            <span class="mockup-btn">Copy</span>
+                        <div class="mockup-verdict">
+                            ✓ Worth your time — read this one
                         </div>
                     </div>
                 </div>
@@ -853,46 +830,45 @@
         </div>
     </section>
     
-    <!-- Why I Built This -->
+    <!-- Problem -->
     <section class="problem">
         <div class="container">
-            <h2>Commenting is the #1 growth strategy on Substack. But it's exhausting.</h2>
+            <h2>You subscribed because they're great writers. Now you're drowning.</h2>
             
             <div class="inbox-image-container">
                 <img src="inbox.png" alt="Gmail inbox showing 2,434 unread Substack emails" class="inbox-image">
-                <p class="inbox-caption">Look familiar? Reading and commenting on all of this would be a full-time job.</p>
+                <p class="inbox-caption">Look familiar? Reading all of this would be a full-time job.</p>
             </div>
             
-            <p>I've been on Substack for nearly two years across multiple publications. I know the playbook: show up in comment sections, add something valuable, and build real relationships with other writers. The algorithm notices = readers notice.</p>
-            <p>But my inbox gets dozens of posts each week that I actually want to engage with. Reading each one deeply, finding an angle, writing something that doesn't sound phoned in — that's hours every week I don't have.</p>
-            <p>So I built this. Not for fake engagement, but to get to the good part faster: the actual conversation.</p>
+            <p>That inbox full of unread Substacks? It's not a failure of discipline—it's an impossible math problem. Reading everything would be a full-time job. So you skim randomly, miss the best stuff, and feel guilty about the rest.</p>
+            <p>What if you could instantly know which posts are worth your time—before you commit to reading?</p>
         </div>
     </section>
     
     <!-- Features -->
     <section class="features">
         <div class="container">
-            <h2>Read less. Comment more.</h2>
+            <h2>Read What Matters. Skip What Doesn't.</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🎯</div>
                     <h3>Score in Seconds</h3>
-                    <p>Instantly know if a post is worth your time. Get a 1-5 score based on actionable insights, originality, and relevance to your interests.</p>
+                    <p>Paste any Substack URL and get a 1-5 score based on actionable insights, originality, and depth. Know in seconds whether it's a must-read or a skip.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📝</div>
                     <h3>Synopsis + Key Quotes</h3>
-                    <p>Skip the skim. Get the core argument in 3 sentences and the most quotable lines—perfect for crafting a response.</p>
+                    <p>Get the core argument in 3 sentences and the most quotable lines. Perfect for deciding whether to dive deeper—or for remembering the gist later.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎤</div>
-                    <h3>Drafts in Your Voice</h3>
-                    <p>Three ready-to-use comments (Challenge, Connect, Extend) written in YOUR style. Set up your voice profile once, sound like yourself every time.</p>
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Personalized Scoring</h3>
+                    <p>Set up your interests once. Posts about topics you care about score higher. Posts full of fluff score lower. Your rubric, your priorities.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔍</div>
-                    <h3>Optional Fact-Check</h3>
-                    <p>For posts making big claims, verify with AI-powered research before you engage.</p>
+                    <div class="feature-icon">💬</div>
+                    <h3>Comment Drafts</h3>
+                    <p>Want to engage with the author? Get three ready-to-use comments written in your voice. Set up your voice profile once and sound like yourself every time.</p>
                 </div>
             </div>
         </div>
@@ -901,7 +877,7 @@
     <!-- How It Works -->
     <section class="how-it-works">
         <div class="container">
-            <h2>From URL to comment in 60 seconds</h2>
+            <h2>From overwhelmed to focused in 60 seconds</h2>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
@@ -912,19 +888,19 @@
                 <div class="step">
                     <div class="step-number">2</div>
                     <h3>Score</h3>
-                    <p>Get insights, synopsis, and quotes</p>
+                    <p>Get a 1-5 rating, synopsis, and notable quotes</p>
                     <span class="step-arrow">→</span>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>Copy</h3>
-                    <p>Pick a comment draft or customize</p>
+                    <h3>Decide</h3>
+                    <p>Read it, save it, or skip it—with confidence</p>
                     <span class="step-arrow">→</span>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
-                    <h3>Post</h3>
-                    <p>Engage, connect, grow</p>
+                    <h3>Engage</h3>
+                    <p>If you want to comment, drafts are ready in your voice</p>
                 </div>
             </div>
         </div>
@@ -948,7 +924,7 @@
                 <div class="promo-badge">
                     <span>🎉 Launch special: Use code</span>
                     <code>LAUNCH</code>
-                    <span>for $1 free</span>
+                    <span>for $1 in free credits</span>
                 </div>
                 
                 <a href="https://chromewebstore.google.com/detail/substack-analyzer/cdjdpcifhliaecngilfackmgfncknnkk" class="btn btn-primary">Get Started Free</a>
@@ -968,12 +944,6 @@
                     </div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question">Will comments sound like AI wrote them?</button>
-                    <div class="faq-answer">
-                        <p>They're starting points, not final drafts. You set up a voice profile describing how you actually write: your tone, your go-to moves, and what you avoid. The drafts match that. Edit as much or as little as you want before posting.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
                     <button class="faq-question">What's the difference between $0.10 and $0.25?</button>
                     <div class="faq-answer">
                         <p>Basic analysis ($0.10) gives you score, synopsis, quotes, and comment drafts. Research verification ($0.25) adds AI-powered fact-checking for posts making claims about current events or data.</p>
@@ -982,7 +952,7 @@
                 <div class="faq-item">
                     <button class="faq-question">Why pay-per-use instead of subscription?</button>
                     <div class="faq-answer">
-                        <p>Because I hate subscriptions. You shouldn't pay monthly for something you might casually use. So, add credits when you need them, and use them when you want.</p>
+                        <p>Because I hate subscriptions. You shouldn't pay monthly for something you might use casually. Add credits when you need them, use them when you want.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -998,15 +968,21 @@
                     </div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question">Can I customize what I care about?</button>
+                    <button class="faq-question">Can I customize what topics I care about?</button>
                     <div class="faq-answer">
                         <p>Yes. In settings, you can specify topics you care about (score higher), bonus signals to reward, and things to deprioritize. The scoring adapts to what matters to you.</p>
                     </div>
                 </div>
                 <div class="faq-item">
+                    <button class="faq-question">Will comments sound like AI wrote them?</button>
+                    <div class="faq-answer">
+                        <p>They're starting points, not final drafts. You set up a voice profile describing how you actually write: your tone, your go-to moves, and what you avoid. The drafts match that. Edit as much or as little as you want before posting.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
                     <button class="faq-question">What's the History feature for?</button>
                     <div class="faq-answer">
-                        <p>Every post you analyze gets logged: score, which comment you copied, and the outcome (did you get a reply, a like, a new follower?). It's a feedback loop: track what's working, refine your approach, export to CSV if you want to dig deeper. All stored locally in your browser.</p>
+                        <p>Every post you analyze gets logged: URL, title, score, synopsis, and which comment you copied (if any). It's a feedback loop to track what's working. All stored locally in your browser.</p>
                     </div>
                 </div>
             </div>
@@ -1016,8 +992,8 @@
     <!-- Final CTA -->
     <section class="final-cta">
         <div class="container">
-            <h2>Stop skimming. Connect and grow.</h2>
-            <p>The writers growing fastest on Substack aren't just publishing; they're showing up in comment sections, and building real relationships. Substack Analyzer helps you do that at scale, without spending hours on the platform every day.</p>
+            <h2>Stop drowning. Start reading.</h2>
+            <p>You followed those writers for a reason. Substack Analyzer helps you get back to actually reading the best of what they publish—without the guilt of an overflowing inbox.</p>
             <a href="https://chromewebstore.google.com/detail/substack-analyzer/cdjdpcifhliaecngilfackmgfncknnkk" class="btn btn-secondary">Add to Chrome</a>
         </div>
     </section>
